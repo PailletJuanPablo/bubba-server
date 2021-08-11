@@ -46,7 +46,8 @@ class User extends Authenticatable
         'company_id',
         'remember_token',
         'dni',
-        'domain'
+        'domain',
+        'api_token'
     ];
 
     /**
@@ -65,6 +66,7 @@ class User extends Authenticatable
         'remember_token' => 'string',
         'dni' => 'string',
         'domain' => 'string',
+        
 
     ];
 

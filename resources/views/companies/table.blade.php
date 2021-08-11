@@ -2,20 +2,19 @@
     <table class="table" id="companies-table">
         <thead>
             <tr>
-                <th>Name</th>
-        <th>Image</th>
-        <th>Address</th>
-        <th>Remember Token</th>
-                <th colspan="3">Action</th>
+                <th>Nombre</th>
+        <th>Imagen</th>
+      
+                <th colspan="3">Acción</th>
             </tr>
         </thead>
         <tbody>
         @foreach($companies as $company)
             <tr>
                        <td>{{ $company->name }}</td>
-            <td>{{ $company->image }}</td>
-            <td>{{ $company->address }}</td>
-            <td>{{ $company->remember_token }}</td>
+            <td > <div style="max-height: 150px; overflow: hidden"> 
+                <img width="150" src="{{ $company->image }}"></div></td>
+         
                        <td class=" text-center">
                            {!! Form::open(['route' => ['companies.destroy', $company->id], 'method' => 'delete']) !!}
                            <div class='btn-group'>

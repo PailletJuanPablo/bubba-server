@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('title')
-    Create Company 
+   Crear
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading m-0">New Company</h3>
+            <h3 class="page__heading m-0">Crear</h3>
             <div class="filter-container section-header-breadcrumb row justify-content-md-end">
-                <a href="{{ route('companies.index') }}" class="btn btn-primary">Back</a>
+                <a href="{{ route('companies.index') }}" class="btn btn-primary">Atras</a>
             </div>
         </div>
         <div class="content">
@@ -17,7 +17,7 @@
                    <div class="col-lg-12">
                        <div class="card">
                            <div class="card-body ">
-                                {!! Form::open(['route' => 'companies.store']) !!}
+                                {!! Form::open(['route' => 'companies.store', 'files' => true]) !!}
                                     <div class="row">
                                         @include('companies.fields')
                                     </div>

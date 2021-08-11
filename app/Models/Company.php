@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Company
  * @package App\Models
- * @version August 6, 2021, 3:15 am UTC
+ * @version August 11, 2021, 6:39 am UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection $orders
  * @property \Illuminate\Database\Eloquent\Collection $users
@@ -61,7 +61,7 @@ class Company extends Model
      */
     public static $rules = [
         'name' => 'required|string|max:255',
-        'image' => 'required|string|max:255',
+        'image' => 'nullable',
         'address' => 'required|string|max:255',
         'remember_token' => 'nullable|string|max:100',
         'created_at' => 'nullable',

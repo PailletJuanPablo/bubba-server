@@ -1,14 +1,12 @@
 @extends('layouts.app')
 @section('title')
-    Orders 
+    Remitos 
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Orders</h1>
-            <div class="section-header-breadcrumb">
-                <a href="{{ route('orders.create')}}" class="btn btn-primary form-btn">Order <i class="fas fa-plus"></i></a>
-            </div>
+            <h1>Remitos</h1>
+           
         </div>
     <div class="section-body">
        <div class="card">

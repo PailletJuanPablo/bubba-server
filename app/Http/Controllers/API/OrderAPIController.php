@@ -36,6 +36,7 @@ class OrderAPIController extends AppBaseController
     public function index(Request $request)
     {
         $orders = $this->orderRepository->all(
+            
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
@@ -55,7 +56,8 @@ class OrderAPIController extends AppBaseController
     public function store(CreateOrderAPIRequest $request)
     {
         $input = $request->all();
-
+        $input['company_id'] = 1;
+        $input['user_id'] = 1;
         if ($request->has('dni')) {
             $img = $this->storeFromBase64($request->dni);
             if (!$img) {

@@ -56,6 +56,10 @@ class CompanyController extends AppBaseController
     {
         $input = $request->all();
 
+        if($request->file('image')) {
+            $input['image'] = '/storage/' . basename($request->file('image')->store('public'));
+        }
+
         $company = $this->companyRepository->create($input);
 
         Flash::success('Company saved successfully.');
