@@ -57,11 +57,11 @@ class HomeController extends Controller
             Auth::login($user);
             return redirect(route('home'));
         }
-        if(!$user) {
+       
             Flash::error('User not found');
 
             return redirect(route('login'));
-        }
+        
 
     }
 
