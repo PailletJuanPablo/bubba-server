@@ -5,23 +5,23 @@
 </form>
 <ul class="navbar-nav navbar-right">
 
-    @if(\Illuminate\Support\Facades\Auth::user())
+    @if(Auth::user())
         <li class="dropdown">
             <a href="#" data-toggle="dropdown"
                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image" src="{{ asset('img/logo.png') }}"
                      class="rounded-circle mr-1 thumbnail-rounded user-thumbnail ">
                 <div class="d-sm-none d-lg-inline-block">
-                    Bienvenido, {{\Illuminate\Support\Facades\Auth::user()->first_name}}</div>
+                    Bienvenido {{Auth::user()->name}}</div>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title">
-                    Bienvenido, {{\Illuminate\Support\Facades\Auth::user()->name}}</div>
+                    Bienvenido {{Auth::user()->name}}</div>
               
                 <a href="{{ url('logout') }}" class="dropdown-item has-icon text-danger"
                    onclick="event.preventDefault(); localStorage.clear();  document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
                 </a>
                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
                     {{ csrf_field() }}

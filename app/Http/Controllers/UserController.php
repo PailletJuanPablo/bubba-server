@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\User;
 
 class UserController extends AppBaseController
 {
@@ -18,6 +19,8 @@ class UserController extends AppBaseController
     public function __construct(UserRepository $userRepo)
     {
         $this->userRepository = $userRepo;
+        $this->middleware('auth');
+
     }
 
     /**
@@ -29,7 +32,7 @@ class UserController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $users = $this->userRepository->all();
+        $users = $this->userRepository->all(['role_id' => 2]);
 
         return view('users.index')
             ->with('users', $users);
@@ -56,9 +59,17 @@ class UserController extends AppBaseController
     {
         $input = $request->all();
 
-        $user = $this->userRepository->create($input);
+        
+        $user = User::create([
+            'name' => $input['name'],
+            'dni' => $input['dni'],
+            'domain' => $input['domain'],
+            'role_id' => 2
+        ]);
 
-        Flash::success('User saved successfully.');
+        
+
+        Flash::success('Creado!');
 
         return redirect(route('users.index'));
     }

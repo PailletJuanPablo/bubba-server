@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('title')
-    Order Details 
+    Detalle de remito
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-        <h1>Order Details</h1>
+        <h1>  Detalle de remito</h1>
         <div class="section-header-breadcrumb">
             <a href="{{ route('orders.index') }}"
-                 class="btn btn-primary form-btn float-right">Back</a>
+                 class="btn btn-primary form-btn float-right">Volver</a>
         </div>
       </div>
    @include('stisla-templates::common.errors')

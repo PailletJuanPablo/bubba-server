@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Auth;
 
 class OrderController extends AppBaseController
 {
@@ -18,6 +19,8 @@ class OrderController extends AppBaseController
     public function __construct(OrderRepository $orderRepo)
     {
         $this->orderRepository = $orderRepo;
+        $this->middleware('auth');
+
     }
 
     /**
@@ -29,7 +32,15 @@ class OrderController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $orders = $this->orderRepository->all();
+
+        $orders;
+        if(Auth::user()->role_id == 3) {
+            $orders = $this->orderRepository->all();
+        }
+        if(Auth::user()->role_id == 1) {
+            $orders = $this->orderRepository->all(['company_id' => Auth::user()->company_id]);
+        }
+
 
         return view('orders.index')
             ->with('orders', $orders);

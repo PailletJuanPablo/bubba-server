@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Resources\OrderResource;
 use Response;
-
+use Auth;
 /**
  * Class OrderController
  * @package App\Http\Controllers\API
@@ -24,6 +24,7 @@ class OrderAPIController extends AppBaseController
     public function __construct(OrderRepository $orderRepo)
     {
         $this->orderRepository = $orderRepo;
+        $this->middleware('auth:api');
     }
 
     /**
@@ -36,13 +37,10 @@ class OrderAPIController extends AppBaseController
     public function index(Request $request)
     {
         $orders = $this->orderRepository->all(
-            
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
+            ['user_id' => Auth::user()->id]
         );
 
-        return $this->sendResponse(OrderResource::collection($orders), 'Orders retrieved successfully');
+        return $this->sendResponse(OrderResource::collection($orders), Auth::user());
     }
 
     /**
@@ -56,8 +54,8 @@ class OrderAPIController extends AppBaseController
     public function store(CreateOrderAPIRequest $request)
     {
         $input = $request->all();
-        $input['company_id'] = 1;
-        $input['user_id'] = 1;
+        $input['company_id'] = $request->get('company_id');
+        $input['user_id'] = Auth::user()->id;
         if ($request->has('dni')) {
             $img = $this->storeFromBase64($request->dni);
             if (!$img) {

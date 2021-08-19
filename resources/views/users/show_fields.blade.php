@@ -40,3 +40,21 @@
     <p>{{ $user->remember_token }}</p>
 </div>
 
+<!-- Dni Field -->
+<div class="form-group">
+    {!! Form::label('dni', 'Dni:') !!}
+    <p>{{ $user->dni }}</p>
+</div>
+
+<!-- Domain Field -->
+<div class="form-group">
+    {!! Form::label('domain', 'Domain:') !!}
+    <p>{{ $user->domain }}</p>
+</div>
+
+<!-- Api Token Field -->
+<div class="form-group">
+    {!! Form::label('api_token', 'Api Token:') !!}
+    <p>{{ $user->api_token }}</p>
+</div>
+

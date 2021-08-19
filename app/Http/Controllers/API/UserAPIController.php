@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Resources\UserResource;
 use Response;
+use Illuminate\Support\Str;
 
 /**
  * Class UserController
@@ -133,7 +134,10 @@ class UserAPIController extends AppBaseController
     public function login(Request $request) {
 
         $user = User::where('dni', $request->dni)->where('domain', $request->domain)->first();
+
         if($user) {
+            $user->api_token = Str::random(60);
+            $user->save();
             return ['user' => $user];
         }
         return ['error' => true];

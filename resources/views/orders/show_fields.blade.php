@@ -1,60 +1,97 @@
 <!-- Company Id Field -->
-<div class="form-group">
-    {!! Form::label('company_id', 'Company Id:') !!}
-    <p>{{ $order->company_id }}</p>
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <p>Empresa {{ $order->company ? $order->company->name : '' }}</p>
+            @if ($order->company)
+            <div style="height: 100px; width: 100px; overflow: hidden; border-radius: 50%">
+
+                <img  style="width: 100%; " src="{{$order->company->image}}">
+
+            </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            {!! Form::label('user_id', 'Móvil:') !!}
+            <p>{{ $order->user ? $order->user->name : '' }}</p>
+        </div>
+    </div>
+
+
+    <div class="col-md-2">
+        <div class="form-group">
+            {!! Form::label('number', 'Número remito:') !!}
+            <p>{{ $order->number }}</p>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            {!! Form::label('name', 'Nombre:') !!}
+            <p>{{ $order->name }}</p>
+        </div>
+    </div>
+
+<div class="mt-4"></div>
+    <!-- Name Field -->
+
+
+
+
 </div>
+
 
 <!-- User Id Field -->
-<div class="form-group">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{{ $order->user_id }}</p>
-</div>
+
 
 <!-- Number Field -->
-<div class="form-group">
-    {!! Form::label('number', 'Number:') !!}
-    <p>{{ $order->number }}</p>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <p> Remito </p>
+            <img class="img-fluid" src="{{$order->remit}}">
+        </div>
+
+
+    </div>
+
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <p> Tarjeta </p>
+            <img class="img-fluid" src="{{$order->card}}">
+        </div>
+
+
+    </div>
+
+
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <p> DNI </p>
+            <img class="img-fluid" src="{{$order->dni}}">
+        </div>
+
+
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <p> Firma </p>
+            <img class="img-fluid" src="{{$order->sign}}">
+        </div>
+
+
+    </div>
 </div>
 
-<!-- Name Field -->
-<div class="form-group">
-    {!! Form::label('name', 'Name:') !!}
-    <p>{{ $order->name }}</p>
-</div>
 
-<!-- Remit Field -->
-<div class="form-group">
-    {!! Form::label('remit', 'Remit:') !!}
-    <p>{{ $order->remit }}</p>
-</div>
 
-<!-- Dni Field -->
-<div class="form-group">
-    {!! Form::label('dni', 'Dni:') !!}
-    <p>{{ $order->dni }}</p>
-</div>
-
-<!-- Card Field -->
-<div class="form-group">
-    {!! Form::label('card', 'Card:') !!}
-    <p>{{ $order->card }}</p>
-</div>
-
-<!-- Sign Field -->
-<div class="form-group">
-    {!! Form::label('sign', 'Sign:') !!}
-    <p>{{ $order->sign }}</p>
-</div>
-
-<!-- Dni Number Field -->
-<div class="form-group">
-    {!! Form::label('dni_number', 'Dni Number:') !!}
-    <p>{{ $order->dni_number }}</p>
-</div>
-
-<!-- Card Number Field -->
-<div class="form-group">
-    {!! Form::label('card_number', 'Card Number:') !!}
-    <p>{{ $order->card_number }}</p>
-</div>
 

@@ -1,20 +1,9 @@
 <!-- Name Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name:') !!}
-    {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
+    {!! Form::label('name', 'Nombre:') !!}
+    {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
 </div>
 
-<!-- Email Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email', 'Email:') !!}
-    {!! Form::email('email', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
-</div>
-
-<!-- Email Verified At Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email_verified_at', 'Email Verified At:') !!}
-    {!! Form::text('email_verified_at', null, ['class' => 'form-control','id'=>'email_verified_at']) !!}
-</div>
 
 @push('scripts')
     <script type="text/javascript">
@@ -26,32 +15,24 @@
     </script>
 @endpush
 
-<!-- Password Field -->
+
+
+<!-- Dni Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('password', 'Password:') !!}
-    {!! Form::password('password', ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
+    {!! Form::label('dni', 'Dni:') !!}
+    {!! Form::text('dni', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
 </div>
 
-<!-- Role Id Field -->
+<!-- Domain Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('role_id', 'Role Id:') !!}
-    {!! Form::number('role_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('domain', 'Dominio:') !!}
+    {!! Form::text('domain', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
 </div>
 
-<!-- Company Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('company_id', 'Company Id:') !!}
-    {!! Form::number('company_id', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Remember Token Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    {!! Form::text('remember_token', null, ['class' => 'form-control','maxlength' => 100,'maxlength' => 100,'maxlength' => 100]) !!}
-</div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('users.index') }}" class="btn btn-light">Cancel</a>
+    {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+    <a href="{{ route('users.index') }}" class="btn btn-light">Cancelar</a>
 </div>

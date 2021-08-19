@@ -31,7 +31,10 @@ class UserFactory extends Factory
         'deleted_at' => $this->faker->date('Y-m-d H:i:s'),
         'remember_token' => $this->faker->word,
         'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s')
+        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
+        'dni' => $this->faker->word,
+        'domain' => $this->faker->word,
+        'api_token' => $this->faker->word
         ];
     }
 }

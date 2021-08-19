@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('title')
-    Edit User 
+    Editar Móvil 
 @endsection
 @section('content')
     <section class="section">
             <div class="section-header">
-                <h3 class="page__heading m-0">Edit User</h3>
+                <h3 class="page__heading m-0">Editar Móvil</h3>
                 <div class="filter-container section-header-breadcrumb row justify-content-md-end">
-                    <a href="{{ route('users.index') }}"  class="btn btn-primary">Back</a>
+                    <a href="{{ route('users.index') }}"  class="btn btn-primary">Volver</a>
                 </div>
             </div>
   <div class="content">

@@ -20,6 +20,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
+Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
+Route::post('/custom_login', [App\Http\Controllers\HomeController::class, 'processLogin'])->name('processLogin');
+Route::get('/admin_login', [App\Http\Controllers\HomeController::class, 'adminLogin'])->name('adminLogin');
+
+
 
 Route::resource('users', App\Http\Controllers\UserController::class);
 
