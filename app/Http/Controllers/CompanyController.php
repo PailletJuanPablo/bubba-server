@@ -9,6 +9,8 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Hash;
+use App\Models\User;
 
 class CompanyController extends AppBaseController
 {
@@ -60,9 +62,27 @@ class CompanyController extends AppBaseController
             $input['image'] = '/storage/' . basename($request->file('image')->store('public'));
         }
 
+      
+
+
         $company = $this->companyRepository->create($input);
 
-        Flash::success('Company saved successfully.');
+        $userToCheck = User::where('company_id', $company->id)->first();
+        if(!$userToCheck) {
+            $emailToSet = str_replace(' ', '', $company->name) . $company->id;
+
+            $userToCheck = User::create([
+                'name' => $company->name,
+                'email' => $emailToSet,
+                'role_id' => 1,
+                'password' => Hash::make($request->get('password')),
+                'company_id' => $company->id
+
+
+            ]);
+        }
+
+        Flash::success('Empresa guardada');
 
         return redirect(route('companies.index'));
     }
@@ -126,6 +146,21 @@ class CompanyController extends AppBaseController
         }
 
         $company = $this->companyRepository->update($request->all(), $id);
+
+        $userToCheck = User::where('company_id', $company->id)->first();
+        if(!$userToCheck) {
+            $emailToSet = str_replace(' ', '', $company->name) . $company->id;
+
+            $userToCheck = User::create([
+                'name' => $company->name,
+                'email' => $emailToSet,
+                'role_id' => 1,
+                'password' => Hash::make($request->get('password')),
+                'company_id' => $company->id
+
+
+            ]);
+        }
 
         Flash::success('Company updated successfully.');
 

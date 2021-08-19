@@ -5,7 +5,8 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use App\Models\User;
+use Hash;
 /**
  * Class Company
  * @package App\Models
@@ -68,6 +69,9 @@ class Company extends Model
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
+
+
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

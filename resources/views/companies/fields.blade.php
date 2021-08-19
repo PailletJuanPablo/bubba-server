@@ -17,7 +17,11 @@
     {!! Form::text('address', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
 </div>
 
-
+<!-- Address Field -->
+<div class="form-group col-sm-6">
+    <label for="password"> Contraseña de ingreso </label>
+    <input type="password" name="password" id="password" class="form-control">
+</div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
