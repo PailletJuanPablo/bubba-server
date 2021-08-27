@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateOrderAPIRequest;
 use App\Http\Requests\API\UpdateOrderAPIRequest;
 use App\Models\Order;
+use App\Models\DniDocument;
+
 use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -24,7 +26,7 @@ class OrderAPIController extends AppBaseController
     public function __construct(OrderRepository $orderRepo)
     {
         $this->orderRepository = $orderRepo;
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except(['getDniData']);
     }
 
     /**
@@ -58,32 +60,34 @@ class OrderAPIController extends AppBaseController
         $input['user_id'] = Auth::user()->id;
         if ($request->has('dni')) {
             $img = $this->storeFromBase64($request->dni);
-            if (!$img) {
-                return ['error' => 'No base64 string provided'];
+            if ($img) {
+                $input['dni'] = $img;
             }
-            $input['dni'] = $img;
         }
         if ($request->has('card')) {
             $img = $this->storeFromBase64($request->card);
-            if (!$img) {
-                return ['error' => 'No base64 string provided'];
+            if ($img) {
+                $input['card'] = $img;
             }
-            $input['card'] = $img;
         }
         if ($request->has('remit')) {
             $img = $this->storeFromBase64($request->remit);
-            if (!$img) {
-                return ['error' => 'No base64 string provided'];
+            if ($img) {
+                $input['remit'] = $img;
             }
-            $input['remit'] = $img;
         }
         if ($request->has('sign')) {
             $img = $this->storeFromBase64($request->sign);
-            if (!$img) {
-                return ['error' => 'No base64 string provided'];
+            if ($img) {
+                $input['sign'] = $img;
             }
-            $input['sign'] = $img;
         }
+
+        $dniDoc = DniDocument::firstOrNew(['dni_number' => $input['dni_number']]);
+        $dniDoc->dni = $input['dni'];
+        $dniDoc->card = $input['card'];
+        $dniDoc->name = $input['name'];
+        $dniDoc->save();
         $order = $this->orderRepository->create($input);
 
         return $this->sendResponse(new OrderResource($order), 'Order saved successfully');
@@ -156,5 +160,15 @@ class OrderAPIController extends AppBaseController
         $order->delete();
 
         return $this->sendSuccess('Order deleted successfully');
+    }
+
+
+    public function getDniData($dni)
+    {
+        $dniDoc = DniDocument::where('dni_number', $dni)->first();
+        if($dniDoc) {
+            return $dniDoc;
+        }
+        return false;
     }
 }

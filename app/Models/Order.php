@@ -36,8 +36,9 @@ class Order extends Model
     const UPDATED_AT = 'updated_at';
 
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['created_at','deleted_at'];
 
+    protected $dateFormat = 'd-m-Y';
 
 
     public $fillable = [
@@ -69,7 +70,9 @@ class Order extends Model
         'card' => 'string',
         'sign' => 'string',
         'dni_number' => 'string',
-        'card_number' => 'string'
+        'card_number' => 'string',
+        'created_at' => 'datetime:d-m-Y H:00',
+
     ];
 
     /**

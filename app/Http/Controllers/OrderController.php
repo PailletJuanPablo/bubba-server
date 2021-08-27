@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use Auth;
+use App\Models\Order;
 
 class OrderController extends AppBaseController
 {
@@ -20,7 +21,6 @@ class OrderController extends AppBaseController
     {
         $this->orderRepository = $orderRepo;
         $this->middleware('auth');
-
     }
 
     /**
@@ -32,18 +32,35 @@ class OrderController extends AppBaseController
      */
     public function index(Request $request)
     {
-
         $orders;
-        if(Auth::user()->role_id == 3) {
-            $orders = $this->orderRepository->all();
+        $data = [];
+
+        if (Auth::user()->role_id == 3) {
+            if ($request->query('from') && $request->query('to')) {
+                $orders = Order::whereBetween('created_at', array($request->query('from'),
+                $request->query('to')))->get();
+                $data['from'] = $request->query('from');
+                $data['to'] = $request->query('to');
+            } else {
+                $orders = $this->orderRepository->all();
+            }
         }
-        if(Auth::user()->role_id == 1) {
-            $orders = $this->orderRepository->all(['company_id' => Auth::user()->company_id]);
+        if (Auth::user()->role_id == 1) {
+            if ($request->query('from') && $request->query('to')) {
+                $orders = Order::whereBetween('created_at', array($request->query('from'),
+                $request->query('to')))
+                ->where('company_id', Auth::user()->company_id)
+                ->get();
+                $data['from'] = $request->query('from');
+                $data['to'] = $request->query('to');
+            } else {
+                $orders = $this->orderRepository->all(['company_id' => Auth::user()->company_id]);
+            }
         }
 
+        $data['orders'] = $orders;
 
-        return view('orders.index')
-            ->with('orders', $orders);
+        return view('orders.index', $data);
     }
 
     /**

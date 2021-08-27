@@ -33,3 +33,6 @@ Route::resource('orders', App\Http\Controllers\OrderController::class);
 
 
 Route::resource('companies', App\Http\Controllers\CompanyController::class);
+
+
+Route::resource('dniDocuments', App\Http\Controllers\DniDocumentController::class);

@@ -11,6 +11,32 @@ Remitos
     <div class="section-body">
         <div class="card">
             <div class="card-body">
+                <div class="filter">
+<h6> Filtrar por fecha </h6>
+                    <form style="display: flex; margin-bottom: 25px">
+                        <div class="form-control">
+                            <label for="from"> Desde </label>
+                            <input id="from" name="from"
+                            @isset($from)
+                            value="{{$from}}"
+                        @endisset type="date" placeholder="Desde">
+
+                        </div>
+
+                        <div class="form-control">
+                            <label for="to"> Hasta </label>
+                            <input id="to" name="to" 
+                            @isset($to)
+                                value="{{$to}}"
+                            @endisset
+                            type="date" placeholder="Desde">
+
+                        </div>
+
+                        <button class="btn btn-primary"> Buscar </button>
+
+                    </form> 
+                </div>
                 @include('orders.table')
             </div>
         </div>

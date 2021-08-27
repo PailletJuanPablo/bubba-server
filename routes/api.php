@@ -29,3 +29,7 @@ Route::resource('companies', CompanyAPIController::class);
 
 
 Route::post('/login', [App\Http\Controllers\API\UserAPIController::class, 'login'])->name('api.login');
+
+
+Route::resource('dni_documents', App\Http\Controllers\API\DniDocumentAPIController::class);
+Route::get('/get_dni_data/{dni}', [App\Http\Controllers\API\OrderAPIController::class, 'getDniData'])->name('api.getDniData');

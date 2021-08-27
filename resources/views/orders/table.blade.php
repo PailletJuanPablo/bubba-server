@@ -3,6 +3,8 @@
         <thead>
             <tr>
                 <th >Empresa</th>
+                <th >Fecha</th>
+
                 <th >Móvil</th>
                 <th >Numero Remito </th>
                 <th >Nombre</th>
@@ -36,6 +38,7 @@
 
 
                 </td>
+                <td><div class="td-content">{{ $order->created_at->format('d-m-Y H:00') }}</div></td>
 
 
                 <td><div class="td-content">{{ $order->user ? $order->user->name : '-' }}</div></td>
