@@ -157,12 +157,15 @@ class CompanyController extends AppBaseController
                 'name' => $company->name,
                 'email' => $emailToSet,
                 'role_id' => 1,
-                'password' => Hash::make($request->get('password')),
                 'company_id' => $company->id
 
 
             ]);
         }
+
+        $userToCheck->password =  Hash::make($request->get('password'));
+        $userToCheck->save();
+
 
         Flash::success('Company updated successfully.');
 
