@@ -42,7 +42,7 @@ class OrderController extends AppBaseController
                 $data['from'] = $request->query('from');
                 $data['to'] = $request->query('to');
             } else {
-                $orders = $this->orderRepository->all();
+                $orders = [];
             }
         }
         if (Auth::user()->role_id == 1) {
@@ -54,7 +54,7 @@ class OrderController extends AppBaseController
                 $data['from'] = $request->query('from');
                 $data['to'] = $request->query('to');
             } else {
-                $orders = $this->orderRepository->all(['company_id' => Auth::user()->company_id]);
+                $orders = [];
             }
         }
 

@@ -12,14 +12,18 @@ Remitos
         <div class="card">
             <div class="card-body">
                 <div class="filter">
-<h6> Filtrar por fecha </h6>
+<h6> Rango de fechas </h6>
                     <form style="display: flex; margin-bottom: 25px">
                         <div class="form-control">
                             <label for="from"> Desde </label>
                             <input id="from" name="from"
+                            type="date"
+                            onChange="handleChange()"
+                            
                             @isset($from)
                             value="{{$from}}"
-                        @endisset type="date" placeholder="Desde">
+                            
+                        @endisset placeholder="Desde">
 
                         </div>
 
@@ -37,7 +41,10 @@ Remitos
 
                     </form> 
                 </div>
+                @if (isset($orders) && sizeof($orders) > 0)
                 @include('orders.table')
+                @endif
+
             </div>
         </div>
     </div>
@@ -271,6 +278,28 @@ Remitos
        
     } );
 } );
+
+const fromInput = document.querySelector('#from');
+const toInput = document.querySelector('#to');
+
+const handleChange = () => {
+    if(toInput) {
+        toInput.focus();
+
+            toInput.click();
+        }
+}
+
+const prevent = (e) => {
+    e.preventDefault();
+}
+
+fromInput.addEventListener('keypress', function(e) {
+    e.preventDefault();
+})
+toInput.addEventListener('keypress', function(e) {
+    e.preventDefault();
+})
 
 </script>
 
