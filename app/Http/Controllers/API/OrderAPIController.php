@@ -42,7 +42,12 @@ class OrderAPIController extends AppBaseController
             ['user_id' => Auth::user()->id]
         );
 
-        return $this->sendResponse(OrderResource::collection($orders), Auth::user());
+        $orders = Order::where('user_id', Auth::user()->id)->simplePaginate();
+
+        return $orders;
+
+
+
     }
 
     /**
