@@ -38,11 +38,11 @@ class OrderAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $orders = $this->orderRepository->all(
-            ['user_id' => Auth::user()->id]
-        );
+    
 
-        $orders = Order::where('user_id', Auth::user()->id)->simplePaginate();
+        $orders = Order::where('user_id', Auth::user()->id)
+        ->orderBy('created_at', 'DESC')
+        ->simplePaginate();
 
         return $orders;
 
